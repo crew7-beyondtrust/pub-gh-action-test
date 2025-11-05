@@ -1,5 +1,6 @@
 env:
   MYVAR: crew7
+  GH_TOKEN: ${{secrets.MY_TEST_SECRET}}
 on: push
 jobs:
   my-job:
@@ -9,3 +10,6 @@ jobs:
 
       - name: named run
         run: echo "what u sayin abt $MYVAR???"
+
+      - shell: bash
+        run: echo ""
