@@ -1,9 +1,12 @@
-name: testing-action-1
-on: push
-concurrency: 
-  group: my-group
+defaults:
+  run:
+    shell: bash
+    working-directory: /
+name: fake-job
 jobs:
-  test-action-1-job:
+  my-job-1:
+    name: dumb job
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello World!"
+      - run: echo "dumb job"
+on: push
