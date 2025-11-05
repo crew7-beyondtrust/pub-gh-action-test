@@ -1,8 +1,11 @@
+env:
+  MYVAR: crew7
 on: push
 jobs:
   my-job:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "nameless job!"
-      - run: pwd
-      - run: whats this
+      - run: echo "My name is $MYVAR"
+
+      - name: named run
+        run: echo "what u sayin abt $MYVAR???"
