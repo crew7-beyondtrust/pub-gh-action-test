@@ -1,0 +1,10 @@
+name: testing-action-2
+on: push
+concurrency: 
+  group: my-group
+  cancel-in-progress: true
+jobs:
+  test-action-1-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "My Second Hello World!"
