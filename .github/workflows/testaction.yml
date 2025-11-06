@@ -20,15 +20,6 @@ jobs:
   my-job:
     runs-on: ubuntu-latest
     cancel-timeout-minutes: 20
-    container: 
-      image: node:18
-      env:
-        NODE_ENV: development
-      ports:
-        - 80
-      volumes:
-        - my_docker_volume:/volume_mount
-      options: --cpus 1
     defaults:
       run:
         shell: bash
