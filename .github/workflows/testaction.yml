@@ -7,10 +7,10 @@ jobs:
   dummy-job:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "firstvar=dummy job for needs" >> $GITHUB_OUTPUT
+      - run: echo "firstvar=hello" >> $GITHUB_OUTPUT
         id: job1-step1-output
 
-      - run: echo "secondvar=second output test" >> $GITHUB_OUTPUT
+      - run: echo "secondvar=world" >> $GITHUB_OUTPUT
         id: job1-step2-output
       
     outputs:
@@ -45,7 +45,7 @@ jobs:
     name: my-job-name
     needs: [dummy-job]
 
-    
+
     steps:
       - name: what are my env variables
         run: env
@@ -58,3 +58,6 @@ jobs:
 
       - name: list output values
         run: echo "${{needs.dummy-job.outputs.output-test-1}}"
+
+      - name: list second output value
+        run: echo "${{needs.dummy-job.outputs.output-test-2}}"
