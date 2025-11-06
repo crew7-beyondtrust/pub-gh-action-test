@@ -54,3 +54,6 @@ jobs:
 
       - name: list second output value
         run: echo "${{needs.dummy-job.outputs.output-test-2}}"
+
+      - name: list matrix
+        run: echo "${{matrix.fake-matrix}}"
