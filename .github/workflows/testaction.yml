@@ -32,4 +32,4 @@ jobs:
         run: env
 
       - name: what is my path currently?
-        run: pwd
+        run: pwd && echo "new commit test"
