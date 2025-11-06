@@ -46,7 +46,7 @@ jobs:
     needs: [dummy-job]
     snapshot: 
       image-name: my-test-image
-      version: 0.0.1
+      version: 1.*
 
 
     steps:
