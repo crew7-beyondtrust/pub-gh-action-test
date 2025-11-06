@@ -44,6 +44,9 @@ jobs:
       job-env: hello_job
     name: my-job-name
     needs: [dummy-job]
+    snapshot: 
+      image-name: my-test-image
+      version: 0.0.1
 
 
     steps:
