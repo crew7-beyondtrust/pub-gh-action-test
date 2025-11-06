@@ -1,11 +1,22 @@
 env:
-  envvar: hello
-  GH_TOKEN: 
-
-
+  workflow-env: hello_workflow
+  GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+name: my-workflow-name
 on: push
-
 jobs:
+  dummy-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "firstvar=dummy job for needs" >> $GITHUB_OUTPUT
+        id: job1-step1-output
+
+      - run: echo "secondvar=second output test" >> $GITHUB_OUTPUT
+        id: job1-step2-output
+      
+    outputs:
+      output-test-1: ${{steps.job1-step1-output.outputs.firstvar}}
+      output-test-2: ${{steps.job1-step2-output.outputs.secondvar}}
+
   my-job:
     runs-on: ubuntu-latest
     cancel-timeout-minutes: 20
@@ -25,11 +36,25 @@ jobs:
     environment: 
       name: gh action test environemnt
       url: http://example.com
-    
+    concurrency: 
+      group: my-group
+      cancel-in-progress: true
+    continue-on-error: true
+    env:
+      job-env: hello_job
+    name: my-job-name
+    needs: [dummy-job]
 
+    
     steps:
       - name: what are my env variables
         run: env
+        
+      - name: showcase workflow var and job var
+        run: echo "job env; $job-env   workflow env; $workflow-env"
 
       - name: what is my path currently?
         run: pwd && echo "new commit test"
+
+      - name: list output values
+        run: echo "${{needs.dummy-job.outputs.output-test-1}}"
