@@ -1,15 +1,33 @@
 env:
-  MYVAR: crew7
-  GH_TOKEN: ${{secrets.MY_TEST_SECRET}}
+  envvar: hello
+  GH_TOKEN: 
+
+
 on: push
+
 jobs:
   my-job:
     runs-on: ubuntu-latest
+    cancel-timeout-minutes: 20
+    container: 
+      image: node:18
+      env:
+        NODE_ENV: development
+      ports:
+        - 80
+      volumes:
+        - my_docker_volume:/volume_mount
+      options: --cpus 1
+    defaults:
+      run:
+        shell: bash
+        working-directory: /
+    environment: 
+      name: gh action test environemnt
+      url: http://example.com
     steps:
-      - run: echo "My name is $MYVAR"
+      - name: what are my env variables
+        run: env
 
-      - name: named run
-        run: echo "what u sayin abt $MYVAR???"
-
-      - shell: bash
-        run: echo "$GH_TOKEN"
+      - name: what is my path currently?
+        run: pwd
