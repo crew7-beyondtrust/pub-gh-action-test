@@ -44,10 +44,7 @@ jobs:
       job-env: hello_job
     name: my-job-name
     needs: [dummy-job]
-    snapshot: 
-      image-name: my-test-image
-      version: 1.*
-
+    
 
     steps:
       - name: what are my env variables

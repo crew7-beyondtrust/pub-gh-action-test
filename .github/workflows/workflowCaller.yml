@@ -1,0 +1,8 @@
+# .github/workflows/main.yml
+on: workflow_dispatch
+
+jobs:
+  deploy-job:
+    uses: ./.github/workflows/deploy.yml   # ✅ this is job-level `uses:`
+    with:
+      env: production
