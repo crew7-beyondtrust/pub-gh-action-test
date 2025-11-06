@@ -35,7 +35,9 @@ jobs:
       job-env: hello_job
     name: my-job-name
     needs: [dummy-job]
-    
+    strategy:
+      matrix:
+        fake-matrix: [1,2]
 
     steps:
       - name: what are my env variables

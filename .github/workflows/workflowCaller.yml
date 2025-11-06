@@ -1,8 +1,0 @@
-# .github/workflows/main.yml
-on: push
-
-jobs:
-  deploy-job:
-    uses: ./.github/workflows/deploy.yml   # ✅ this is job-level `uses:`
-    with:
-      env: production
